@@ -75,6 +75,32 @@
       gsw = "git switch";
       gswc = "git switch -c";
 
+      # Kubernetes (previously from OMZ kubectl plugin)
+      k = "kubectl";
+      kg = "kubectl get";
+      kgp = "kubectl get pods";
+      kgs = "kubectl get services";
+      kgd = "kubectl get deployments";
+      kgn = "kubectl get nodes";
+      kgi = "kubectl get ingress";
+      kgns = "kubectl get namespaces";
+      kd = "kubectl describe";
+      kdp = "kubectl describe pod";
+      kds = "kubectl describe service";
+      kdd = "kubectl describe deployment";
+      kl = "kubectl logs";
+      klf = "kubectl logs -f";
+      kaf = "kubectl apply -f";
+      kdf = "kubectl delete -f";
+      kex = "kubectl exec -it";
+      kns = "kubens";
+      kctx = "kubectx";
+
+      # Ls
+      l = "ls -lah";
+      la = "ls -lAh";
+      ll = "ls -lh";
+
       # Claude Code
       claude = "command claude --dangerously-skip-permissions";
       cc = "claude";
@@ -91,6 +117,9 @@
     };
 
     initContent = ''
+      # take: mkdir + cd
+      take() { mkdir -p "$1" && cd "$1"; }
+
       # PATH additions
       export PATH="$HOME/.local/bin:$PATH"
       export PATH="/Users/albert/.antigravity/antigravity/bin:$PATH"
