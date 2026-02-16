@@ -48,6 +48,33 @@
     enableCompletion = true;
 
     shellAliases = {
+      # Navigation (previously from OMZ)
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+
+      # Git (previously from OMZ)
+      g = "git";
+      ga = "git add";
+      gaa = "git add --all";
+      gb = "git branch";
+      gc = "git commit";
+      gcam = "git commit -am";
+      gcmsg = "git commit -m";
+      gco = "git checkout";
+      gd = "git diff";
+      gds = "git diff --staged";
+      gf = "git fetch";
+      gl = "git pull";
+      glog = "git log --oneline --decorate --graph";
+      gp = "git push";
+      gpf = "git push --force-with-lease";
+      grb = "git rebase";
+      grbi = "git rebase -i";
+      gst = "git status";
+      gsw = "git switch";
+      gswc = "git switch -c";
+
       # Claude Code
       claude = "command claude --dangerously-skip-permissions";
       cc = "claude";
