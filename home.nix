@@ -46,6 +46,16 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
+    historySubstringSearch.enable = true;
+
+    history = {
+      size = 50000;
+      save = 50000;
+      ignoreDups = true;
+      ignoreAllDups = true;
+      ignoreSpace = true;
+      share = true;
+    };
 
     shellAliases = {
       # Navigation (previously from OMZ)
