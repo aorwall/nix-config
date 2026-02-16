@@ -15,9 +15,32 @@
     };
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    homebrew-nchat = {
+      url = "github:d99kris/homebrew-nchat";
+      flake = false;
+    };
+    homebrew-hashicorp = {
+      url = "github:hashicorp/homebrew-tap";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }: {
+  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew
+    , homebrew-core, homebrew-cask, homebrew-bundle
+    , homebrew-nchat, homebrew-hashicorp, ... }: {
     darwinConfigurations."albert-mbp" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
@@ -31,7 +54,14 @@
             enable = true;
             user = "albert";
             autoMigrate = true;
-            mutableTaps = true;
+            mutableTaps = false;
+            taps = {
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+              "homebrew/homebrew-bundle" = homebrew-bundle;
+              "d99kris/homebrew-nchat" = homebrew-nchat;
+              "hashicorp/homebrew-tap" = homebrew-hashicorp;
+            };
           };
         }
 

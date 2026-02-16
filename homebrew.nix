@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   homebrew = {
     enable = true;
 
@@ -7,10 +7,7 @@
       cleanup = "none"; # Change to "zap" once fully migrated
     };
 
-    taps = [
-      "d99kris/nchat"
-      "hashicorp/tap"
-    ];
+    taps = builtins.attrNames config.nix-homebrew.taps;
 
     brews = [
       "argocd"

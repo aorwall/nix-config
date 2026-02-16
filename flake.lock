@@ -37,6 +37,86 @@
         "type": "github"
       }
     },
+    "homebrew-bundle": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1745335228,
+        "narHash": "sha256-TIKR2UgtyUmHLNZp255/vLs+1I10hXe+sciMEbAGFwE=",
+        "owner": "homebrew",
+        "repo": "homebrew-bundle",
+        "rev": "a3265c84b232e13048ecbf6fc18a2eedfadbeb08",
+        "type": "github"
+      },
+      "original": {
+        "owner": "homebrew",
+        "repo": "homebrew-bundle",
+        "type": "github"
+      }
+    },
+    "homebrew-cask": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771218975,
+        "narHash": "sha256-9lvkCc1ASgqYQHcAc7XD98yhsaicAZsArHr2Ry4leMY=",
+        "owner": "homebrew",
+        "repo": "homebrew-cask",
+        "rev": "abd1934242326f688a8d470adbdb839c18e6ca02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "homebrew",
+        "repo": "homebrew-cask",
+        "type": "github"
+      }
+    },
+    "homebrew-core": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771224884,
+        "narHash": "sha256-7XZ7uc4ftNmnhXhTFdhGE1q4MYYQIPdrIklO9z879IE=",
+        "owner": "homebrew",
+        "repo": "homebrew-core",
+        "rev": "fbc07fc6ef7b5b5301a382b56784a9a2da4fea0d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "homebrew",
+        "repo": "homebrew-core",
+        "type": "github"
+      }
+    },
+    "homebrew-hashicorp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770996083,
+        "narHash": "sha256-ErWIm7E2ZfGX/GQmRJD4J7BwAmOmSMKaxNy4b9X13eI=",
+        "owner": "hashicorp",
+        "repo": "homebrew-tap",
+        "rev": "68c54c9fffb87c2036d273d2795ab7a5fe7ebf9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hashicorp",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
+    "homebrew-nchat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766820882,
+        "narHash": "sha256-DT/OpEEnoMldbEWrTbs+/R+z8IMWm+NrbApsQbUtDvo=",
+        "owner": "d99kris",
+        "repo": "homebrew-nchat",
+        "rev": "f744512e136f323486e580064765729d0e883f10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "d99kris",
+        "repo": "homebrew-nchat",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -94,6 +174,11 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "homebrew-bundle": "homebrew-bundle",
+        "homebrew-cask": "homebrew-cask",
+        "homebrew-core": "homebrew-core",
+        "homebrew-hashicorp": "homebrew-hashicorp",
+        "homebrew-nchat": "homebrew-nchat",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs"

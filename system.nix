@@ -17,6 +17,12 @@
     vim
   ];
 
+  # Make nix-darwin commands available in sudo PATH
+  security.sudo.extraConfig = ''
+    Defaults secure_path="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  '';
+
+
   # Shell
   programs.zsh.enable = true;
 
