@@ -103,6 +103,7 @@
       kaf = "kubectl apply -f";
       kdf = "kubectl delete -f";
       kex = "kubectl exec -it";
+      kcn = "kubens";
       kns = "kubens";
       kctx = "kubectx";
 
@@ -116,6 +117,9 @@
       cc = "claude";
       ccc = "claude -c";
 
+      # Nix
+      nix-update = "cd ~/.config/nix-config && nix flake update && sudo /run/current-system/sw/bin/darwin-rebuild switch --flake .#albert-mbp && git add flake.lock && git commit -m 'chore: update flake inputs'";
+
       # Clipboard / screenshot helpers
       cpimg = ''pngpaste /tmp/clipboard.png && echo "/tmp/clipboard.png"'';
       ssimg = ''screencapture -i /tmp/screenshot.png && echo "Screenshot saved. Read /tmp/screenshot.png to view it."'';
@@ -127,6 +131,20 @@
     };
 
     initContent = ''
+      # Nix update reminder (checks once per day, warns if flake.lock > 7 days old)
+      if [[ ! -f /tmp/.nix-update-check-$UID ]] || [[ $(find /tmp/.nix-update-check-$UID -mmin +1440 2>/dev/null) ]]; then
+        touch /tmp/.nix-update-check-$UID
+        _nix_lock="$HOME/.config/nix-config/flake.lock"
+        if [[ -f "$_nix_lock" ]]; then
+          _nix_age=$(( ($(date +%s) - $(stat -f%m "$_nix_lock")) / 86400 ))
+          if (( _nix_age >= 7 )); then
+            echo "\033[33m[nix] flake.lock is ''${_nix_age} days old. Run 'nix-update' to update.\033[0m"
+          fi
+          unset _nix_age
+        fi
+        unset _nix_lock
+      fi
+
       # take: mkdir + cd
       take() { mkdir -p "$1" && cd "$1"; }
 
