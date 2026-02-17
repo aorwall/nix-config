@@ -1,0 +1,7 @@
+keys:
+  - &albert PLACEHOLDER  # Replace with: age-keygen output (age1xxx...)
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *albert

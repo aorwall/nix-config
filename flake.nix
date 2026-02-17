@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     homebrew-core = {
@@ -38,41 +43,61 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew
-    , homebrew-core, homebrew-cask, homebrew-bundle
-    , homebrew-nchat, homebrew-hashicorp, ... }: {
-    darwinConfigurations."albert-mbp" = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      modules = [
-        ./system.nix
-        ./macos.nix
-        ./homebrew.nix
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      sops-nix,
+      nix-homebrew,
+      homebrew-core,
+      homebrew-cask,
+      homebrew-bundle,
+      homebrew-nchat,
+      homebrew-hashicorp,
+      ...
+    }:
+    {
+      formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
 
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            enable = true;
-            user = "albert";
-            autoMigrate = true;
-            mutableTaps = false;
-            taps = {
-              "homebrew/homebrew-core" = homebrew-core;
-              "homebrew/homebrew-cask" = homebrew-cask;
-              "homebrew/homebrew-bundle" = homebrew-bundle;
-              "d99kris/homebrew-nchat" = homebrew-nchat;
-              "hashicorp/homebrew-tap" = homebrew-hashicorp;
+      darwinConfigurations."albert-mbp" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./system.nix
+          ./macos.nix
+          ./homebrew.nix
+
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              user = "albert";
+              autoMigrate = true;
+              mutableTaps = false;
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+                "homebrew/homebrew-bundle" = homebrew-bundle;
+                "d99kris/homebrew-nchat" = homebrew-nchat;
+                "hashicorp/homebrew-tap" = homebrew-hashicorp;
+              };
             };
-          };
-        }
+          }
 
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-          home-manager.users.albert = import ./home.nix;
-        }
-      ];
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.users.albert = {
+              imports = [
+                sops-nix.homeManagerModules.sops
+                ./home
+              ];
+            };
+          }
+        ];
+      };
     };
-  };
 }

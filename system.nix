@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Let Determinate manage the nix daemon and settings
   nix.enable = false;
 
@@ -21,7 +22,6 @@
   security.sudo.extraConfig = ''
     Defaults secure_path="/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
   '';
-
 
   # Shell
   programs.zsh.enable = true;

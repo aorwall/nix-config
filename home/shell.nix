@@ -1,46 +1,5 @@
-{ pkgs, ... }: {
-  home.stateVersion = "24.11";
-
-  home.packages = with pkgs; [
-    # Cloud & Infrastructure
-    azure-cli
-    eksctl
-    helmfile
-    stern
-
-    # Development tools
-    ast-grep
-    bun
-    cmake
-    automake
-    bison
-    go-task
-    hugo
-    imagemagick
-    pipx
-    protobuf
-    scc
-    vhs
-    zig
-
-    # Utilities
-    ffmpeg
-    pngpaste
-    switchaudio-osx
-    ripgrep
-    jq
-
-    # Data
-    redis
-
-    # AI tools
-    gemini-cli
-
-    # Test reporting
-    allure
-  ];
-
-  # Zsh — fully managed by home-manager
+{ ... }:
+{
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -107,10 +66,10 @@
       kns = "kubens";
       kctx = "kubectx";
 
-      # Ls
-      l = "ls -lah";
-      la = "ls -lAh";
-      ll = "ls -lh";
+      # Ls (eza)
+      l = "eza -lah";
+      la = "eza -lAh";
+      ll = "eza -lh";
 
       # Claude Code
       claude = "command claude --dangerously-skip-permissions";
@@ -123,11 +82,6 @@
       # Clipboard / screenshot helpers
       cpimg = ''pngpaste /tmp/clipboard.png && echo "/tmp/clipboard.png"'';
       ssimg = ''screencapture -i /tmp/screenshot.png && echo "Screenshot saved. Read /tmp/screenshot.png to view it."'';
-    };
-
-    sessionVariables = {
-      LSCOLORS = "ExGxFxdaCxDaDahbadacec";
-      LS_COLORS = "di=1;34:ln=1;36:so=1;35:pi=33:ex=1;32:bd=1;33:cd=1;33:su=0;41:sg=0;43:tw=0;42:ow=0;44";
     };
 
     initContent = ''
@@ -195,30 +149,5 @@
         return $(( 128 + $1 ))
       }
     '';
-  };
-
-  # Programs with dedicated home-manager modules
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.starship = {
-    enable = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
-  programs.gh = {
-    enable = true;
-  };
-
-  programs.git = {
-    enable = true;
   };
 }

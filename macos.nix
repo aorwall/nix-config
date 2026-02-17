@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   # Keyboard remapping
   system.keyboard = {
     enableKeyMapping = true;
